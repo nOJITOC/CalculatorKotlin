@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.mmteams91.calculator.ui.activities.main.MainActivity">
+
+    <TextView
+        android:id="@+id/operations"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:background="@color/colorOperators"
+        android:gravity="right"
+        android:padding="8dp"
+        android:textColor="@color/colorText"
+        android:textSize="24sp"
+        android:typeface="serif"
+        tools:text="2344+325 3234" />
+
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/operations"
+        android:background="@color/colorResult"
+        android:gravity="right"
+        android:padding="16dp"
+        android:text="0"
+        android:textColor="@color/colorText"
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
+
+    <LinearLayout
+        android:id="@+id/finish_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/result"
+        android:orientation="horizontal">
+
+        <Button
+            style="@style/DigitButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="C" />
+        <Button
+            style="@style/DigitButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="=" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/button_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/finish_wrapper"
+        android:orientation="horizontal"
+        android:weightSum="4">
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/number_wrapper"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            app:columnCount="3">
+
+            <Button
+                style="@style/DigitButton"
+                android:text="7"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="8"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="9"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="4"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="5"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="6"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="1"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="2"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="3"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                android:id="@+id/decimal_point"
+                style="@style/DigitButton"
+                android:text="."
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/DigitButton"
+                android:text="0"
+                app:layout_columnSpan="2"
+                app:layout_gravity="fill"
+                app:layout_rowWeight="1" />
+
+
+        </android.support.v7.widget.GridLayout>
+
+        <android.support.v7.widget.GridLayout
+            android:id="@+id/operator_wrapper"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:columnCount="1">
+
+            <Button
+                style="@style/OperatorButton"
+                android:text="/"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/OperatorButton"
+                android:text="*"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/OperatorButton"
+                android:text="-"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+
+            <Button
+                style="@style/OperatorButton"
+                android:text="+"
+                app:layout_columnWeight="1"
+                app:layout_rowWeight="1" />
+        </android.support.v7.widget.GridLayout>
+    </LinearLayout>
+</RelativeLayout>
