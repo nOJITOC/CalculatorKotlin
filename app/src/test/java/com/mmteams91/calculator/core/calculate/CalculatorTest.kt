@@ -175,4 +175,27 @@ class CalculatorTest {
         assertEquals(res, calculator.calculate(), delta)
     }
 
+    /**
+     * GIVEN that user entered (
+     * WHEN a user input simple operation before
+     * THEN calculator result
+     */
+    @Test
+    fun calculate_leftInput_operationBefore() {
+        val calculator = Calculator()
+                .append('3')
+                .append(Operator.Times.toChar())
+                .append(Calculator.LEFT_BRACE)
+                .append('2')
+                .append(Operator.Plus.toChar())
+                .append('3')
+                .append(Operator.Times.toChar())
+                .append(Calculator.LEFT_BRACE)
+                .append('3')
+                .append(Operator.Plus.toChar())
+                .append('2')
+        assertEquals("operations","3*(2+3*(3+2",calculator.getOperationString())
+        assertEquals("res",51.0, calculator.calculate(), delta)
+    }
+
 }

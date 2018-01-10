@@ -20,9 +20,10 @@ class Calculator(private val inputParser: InputParser = InputParser()) {
 
 
     fun append(input: Char): Calculator {
-        if (input == LEFT_BRACE) {
-            inner = Calculator()
-        } else inner?.append(input) ?: if (Operator.isOperator(input)) {
+        inner?.append(input) ?: if (input == LEFT_BRACE) {
+            if (operator != Operator.NoOperator)
+                inner = Calculator()
+        } else if (Operator.isOperator(input)) {
             if (!currentOperation.isEmpty() || calculate is NoValue) {
                 makeCalculate()
             }
@@ -70,17 +71,21 @@ class Calculator(private val inputParser: InputParser = InputParser()) {
     }
 
     fun calculate(): Double =
-            inner?.calculate() ?:
-                    when {
-                        calculate is NoValue -> inputParser.parse(currentOperation).calculate()
-                        operator == Operator.NoOperator || currentOperation.isEmpty() -> calculate.calculate()
-                        calculate is Operation && operator.getPriority() > calculate.getPriority() -> {
-                            val operation = calculate as Operation
-                            Operation(operation.first, operation.operator, Operation(operation.second, operator, inputParser.parse(currentOperation))).calculate()
+            when {
+                inner != null -> {
+                    val innerValue = Value(inner!!.calculate())
 
-                        }
-                        else -> Operation(calculate, operator, inputParser.parse(currentOperation)).calculate()
-                    }
+                    innerValue.calculate()
+                }
+                calculate is NoValue -> inputParser.parse(currentOperation).calculate()
+                operator == Operator.NoOperator || currentOperation.isEmpty() -> calculate.calculate()
+                calculate is Operation && operator.getPriority() > calculate.getPriority() -> {
+                    val operation = calculate as Operation
+                    Operation(operation.first, operation.operator, Operation(operation.second, operator, inputParser.parse(currentOperation))).calculate()
+
+                }
+                else -> Operation(calculate, operator, inputParser.parse(currentOperation)).calculate()
+            }
 
     fun getResult(): String {
         val format = DecimalFormat()
